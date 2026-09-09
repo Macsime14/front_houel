@@ -161,7 +161,14 @@ export function ContactForm() {
           <input type="checkbox" name="consent" className="mt-0.5" />
           <span>
             J&apos;accepte d&apos;être recontacté au sujet de ma demande. Mes
-            informations ne sont utilisées que pour cela.
+            informations ne sont utilisées que pour cela, conformément à la{" "}
+            <a
+              href="/politique-de-confidentialite"
+              className="text-brand-600 underline hover:text-brand-700"
+            >
+              politique de confidentialité
+            </a>
+            .
           </span>
         </label>
         <FieldError message={errors.consent} />

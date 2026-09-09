@@ -206,12 +206,82 @@ export const site = {
     { href: "/contact", label: "Contact" },
   ] as NavLink[],
 
+  /** Liens affichés dans le pied de page (bas) */
+  legalNav: [
+    { href: "/mentions-legales", label: "Mentions légales" },
+    { href: "/politique-de-confidentialite", label: "Politique de confidentialité" },
+  ] as NavLink[],
+
   /**
    * Section « Réalisations » : masquée tant qu'Antoine n'a pas de photos de
    * chantier ni d'avis clients réels. Ne pas l'activer avec du faux contenu.
    */
   showcase: {
     enabled: false,
+  },
+
+  /**
+   * Informations légales.
+   *
+   * La plupart des champs sont À COMPLÉTER avec les informations réelles
+   * d'Antoine (identité, SIRET, assurance, médiateur). Tant que `editor.siret`
+   * et `editor.legalName` sont vides, les pages légales affichent un bandeau
+   * indiquant que ces mentions sont en cours de finalisation.
+   *
+   * Références : LCEN art. 6 (mentions légales), RGPD (politique de
+   * confidentialité), Code de la consommation art. L.616-1 (médiateur).
+   */
+  legal: {
+    editor: {
+      /** Nom et prénom (entrepreneur individuel) ou dénomination sociale */
+      legalName: "",
+      /** Forme juridique, ex. « Entrepreneur individuel », « EURL », « SASU » */
+      legalStatus: "",
+      /** Adresse de l'établissement / du siège */
+      address: "",
+      /** Numéro SIRET */
+      siret: "",
+      /** Immatriculation au Répertoire des Métiers, ex. « RM 69 » */
+      rmRegistration: "",
+      /** TVA intracommunautaire, si assujetti */
+      vatNumber: "",
+      /** Capital social, uniquement si société */
+      capital: "",
+    },
+    /** Directeur de la publication (souvent l'entrepreneur lui-même) */
+    publicationDirector: "",
+    /** Assurance responsabilité civile professionnelle — obligatoire (BTP) */
+    insurance: {
+      company: "",
+      contact: "",
+      coverageArea: "France métropolitaine",
+    },
+    /** Médiateur de la consommation — obligatoire pour une clientèle de particuliers */
+    mediator: {
+      name: "",
+      url: "",
+    },
+    /** Hébergeur du site (connu) */
+    host: {
+      name: "Vercel Inc.",
+      address: "340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis",
+      url: "https://vercel.com",
+    },
+    /** Traitement des données personnelles (formulaire de contact) */
+    privacy: {
+      /** Durée de conservation des demandes (recommandation CNIL pour prospects) */
+      retention: "3 ans à compter du dernier contact",
+      /**
+       * Destinataires techniques des données. À garder synchronisé avec
+       * l'implémentation réelle (cf. src/lib/send-contact-email.ts).
+       */
+      processors: [
+        "Vercel Inc. — hébergement du site",
+        "Resend — acheminement des emails de demande de devis",
+      ],
+    },
+    /** Date de dernière mise à jour des pages légales (ISO AAAA-MM-JJ) */
+    lastUpdated: "2026-09-09",
   },
 };
 
@@ -233,6 +303,25 @@ export const mailHref = hasEmail ? `mailto:${site.contact.email}` : null;
 export const areaHeadline = site.business.city
   ? `${site.business.baseline} à ${site.business.city}`
   : site.business.baseline;
+
+/**
+ * `true` quand l'identité légale minimale (dénomination + SIRET) est renseignée.
+ * Les pages légales s'appuient dessus pour afficher, ou non, un bandeau
+ * « mentions en cours de finalisation ».
+ */
+export const hasLegalIdentity =
+  site.legal.editor.legalName.trim().length > 0 &&
+  site.legal.editor.siret.trim().length > 0;
+
+/** Renvoie la valeur si elle est renseignée, sinon un libellé « à compléter » */
+export function orTodo(value: string): string {
+  return value.trim() || "À compléter";
+}
+
+/** Date de dernière mise à jour des pages légales, formatée en français */
+export const legalLastUpdated = new Intl.DateTimeFormat("fr-FR", {
+  dateStyle: "long",
+}).format(new Date(site.legal.lastUpdated));
 
 /**
  * Communes regroupées par département pour l'affichage.

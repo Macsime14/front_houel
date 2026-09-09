@@ -64,9 +64,25 @@ export function SiteFooter() {
           ) : null}
         </div>
 
-        <p className="mt-10 text-xs text-muted">
-          © {year} {site.business.name}. Tous droits réservés.
-        </p>
+        <div className="mt-10 flex flex-col gap-2 border-t border-border pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {year} {site.business.name}. Tous droits réservés.
+          </p>
+          <nav
+            aria-label="Informations légales"
+            className="flex flex-wrap gap-x-4 gap-y-1"
+          >
+            {site.legalNav.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
       </Container>
     </footer>
   );

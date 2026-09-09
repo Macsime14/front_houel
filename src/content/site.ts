@@ -21,6 +21,8 @@ export type Service = {
   title: string;
   /** Phrase courte affichée en liste (accueil, cartes) */
   summary: string;
+  /** Paragraphe d'introduction affiché sur la page Services */
+  intro: string;
   /** Exemples concrets, affichés sur la page Services */
   details: string[];
 };
@@ -29,6 +31,13 @@ export type ServiceArea = {
   city: string;
   /** Code postal, optionnel */
   postalCode?: string;
+  /** Département (nom ou numéro), pour regrouper l'affichage — optionnel */
+  department?: string;
+};
+
+export type ProcessStep = {
+  title: string;
+  description: string;
 };
 
 export const site = {
@@ -57,6 +66,17 @@ export const site = {
   /** Zone d'intervention — à définir avec Antoine */
   serviceAreas: [] as ServiceArea[],
 
+  serviceArea: {
+    /**
+     * Libellé du secteur couvert, ex. « la métropole de Lyon » ou
+     * « le nord de l'Isère ». Utilisé dans les phrases de la page.
+     * À définir avec Antoine.
+     */
+    regionLabel: "",
+    /** Note libre affichée sur la page Zone d'intervention — optionnelle */
+    note: "",
+  },
+
   /**
    * Services proposés — LISTE PROVISOIRE (source : CLAUDE.md).
    * À confirmer avec Antoine avant mise en ligne : intitulés exacts, un exemple
@@ -68,6 +88,9 @@ export const site = {
       title: "Salle de bain",
       summary:
         "Installation complète : douche, baignoire, WC, lavabo, robinetterie.",
+      intro:
+        "De la simple robinetterie à la salle de bain complète, en neuf comme " +
+        "en rénovation, avec le raccordement de tous les équipements.",
       details: [
         "Pose de douche à l'italienne ou de cabine",
         "Installation de baignoire",
@@ -79,6 +102,9 @@ export const site = {
       slug: "chauffe-eau",
       title: "Chauffe-eau",
       summary: "Installation et remplacement, électrique ou thermodynamique.",
+      intro:
+        "Choix d'un modèle adapté à votre logement et à votre consommation, " +
+        "puis pose, raccordement et mise en service.",
       details: [
         "Chauffe-eau électrique",
         "Chauffe-eau thermodynamique",
@@ -89,12 +115,18 @@ export const site = {
       slug: "chaudiere",
       title: "Chaudière",
       summary: "Installation, remplacement et entretien.",
+      intro:
+        "Installation d'une chaudière neuve ou remplacement d'un appareil " +
+        "vétuste, et entretien régulier.",
       details: ["Installation neuve", "Remplacement", "Entretien annuel"],
     },
     {
       slug: "tuyauterie",
       title: "Tuyauterie et réseaux d'eau",
       summary: "Installation ou rénovation de la plomberie (cuivre, PER…).",
+      intro:
+        "Création, extension ou rénovation de vos canalisations d'eau, avec " +
+        "les matériaux adaptés à chaque situation.",
       details: [
         "Création d'un réseau d'eau",
         "Rénovation d'une plomberie ancienne",
@@ -105,6 +137,9 @@ export const site = {
       slug: "cuisine",
       title: "Cuisine",
       summary: "Raccordement évier, lave-vaisselle, robinetterie.",
+      intro:
+        "Arrivées d'eau et évacuations pour l'ensemble des équipements de " +
+        "votre cuisine.",
       details: [
         "Raccordement évier et robinetterie",
         "Arrivée et évacuation pour lave-vaisselle",
@@ -114,6 +149,9 @@ export const site = {
       slug: "renovation-salle-eau",
       title: "Rénovation complète de salle d'eau",
       summary: "Chantiers « clé en main » plus larges.",
+      intro:
+        "Prise en charge de toute la partie plomberie de votre projet de " +
+        "rénovation, de la dépose de l'existant à la pose des équipements neufs.",
       details: [
         "Dépose de l'existant",
         "Reprise des réseaux",
@@ -122,11 +160,43 @@ export const site = {
     },
     {
       slug: "climatisation",
+      // À préciser avec Antoine : propose-t-il aussi le remplacement et
+      // l'entretien, ou seulement l'installation ?
       title: "Climatisation",
-      summary: "Installation (remplacement et entretien : à préciser).",
+      summary: "Installation de climatisation.",
+      intro: "Installation d'équipements de climatisation.",
       details: ["Installation de climatisation"],
     },
   ] as Service[],
+
+  /**
+   * Déroulé type d'un projet. Générique et volontairement prudent : à ajuster
+   * avec Antoine (notamment la gratuité du devis et la visite systématique).
+   */
+  process: [
+    {
+      title: "Prise de contact",
+      description:
+        "Vous décrivez votre projet via le formulaire ou par téléphone.",
+    },
+    {
+      title: "Évaluation et devis",
+      description:
+        "Nous évaluons les travaux, si besoin lors d'une visite, et vous " +
+        "remettons un devis détaillé.",
+    },
+    {
+      title: "Planification",
+      description:
+        "Une fois le devis validé, nous convenons ensemble d'une date " +
+        "d'intervention.",
+    },
+    {
+      title: "Réalisation",
+      description:
+        "Les travaux sont réalisés à la date prévue, dans le respect du devis.",
+    },
+  ] as ProcessStep[],
 
   /** Navigation principale */
   nav: [
@@ -163,3 +233,24 @@ export const mailHref = hasEmail ? `mailto:${site.contact.email}` : null;
 export const areaHeadline = site.business.city
   ? `${site.business.baseline} à ${site.business.city}`
   : site.business.baseline;
+
+/**
+ * Communes regroupées par département pour l'affichage.
+ * Les communes sans département renseigné sont rassemblées sous « Autres ».
+ */
+export function groupServiceAreasByDepartment(): {
+  department: string;
+  cities: ServiceArea[];
+}[] {
+  const groups = new Map<string, ServiceArea[]>();
+  for (const area of site.serviceAreas) {
+    const key = area.department ?? "Autres secteurs";
+    const list = groups.get(key) ?? [];
+    list.push(area);
+    groups.set(key, list);
+  }
+  return [...groups.entries()].map(([department, cities]) => ({
+    department,
+    cities,
+  }));
+}

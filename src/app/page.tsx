@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/container";
+import { CtaSection } from "@/components/cta-section";
 import { HeroMotif } from "@/components/hero-motif";
 import { ServiceIcon } from "@/components/service-icons";
 import { site, areaHeadline } from "@/content/site";
@@ -69,6 +70,8 @@ export default function HomePage() {
           </p>
         </Container>
       </section>
+
+      <CtaSection />
     </>
   );
 }

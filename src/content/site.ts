@@ -47,8 +47,8 @@ export const site = {
     name: "Antoine Plomberie",
     trade: "Plombier",
     baseline: "Installation et rénovation sanitaire",
-    /** Ville principale — à définir (laisser vide tant que non validé) */
-    city: "",
+    /** Ville principale */
+    city: "Caen",
     description:
       "Installation et rénovation de salles de bain, chauffe-eau, chaudières " +
       "et réseaux d'eau. Travaux planifiés, réalisés sur devis.",
@@ -63,16 +63,20 @@ export const site = {
     email: "",
   },
 
-  /** Zone d'intervention — à définir avec Antoine */
-  serviceAreas: [] as ServiceArea[],
+  /**
+   * Zone d'intervention. Liste à compléter avec Antoine si d'autres communes
+   * sont couvertes (l'affichage les regroupe par département).
+   */
+  serviceAreas: [
+    { city: "Caen", postalCode: "14000", department: "Calvados" },
+  ] as ServiceArea[],
 
   serviceArea: {
     /**
      * Libellé du secteur couvert, ex. « la métropole de Lyon » ou
      * « le nord de l'Isère ». Utilisé dans les phrases de la page.
-     * À définir avec Antoine.
      */
-    regionLabel: "",
+    regionLabel: "Caen",
     /** Note libre affichée sur la page Zone d'intervention — optionnelle */
     note: "",
   },

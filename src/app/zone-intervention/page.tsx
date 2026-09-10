@@ -11,8 +11,9 @@ import {
 
 export const metadata: Metadata = {
   title: "Zone d'intervention",
-  description:
-    "Les secteurs desservis pour vos travaux de plomberie. Contactez-nous pour vérifier si votre commune est couverte.",
+  description: site.serviceArea.regionLabel
+    ? `Plombier à ${site.serviceArea.regionLabel} : installation et rénovation sur devis. Vérifiez si votre commune est couverte.`
+    : "Les secteurs desservis pour vos travaux de plomberie. Contactez-nous pour vérifier si votre commune est couverte.",
 };
 
 export default function ServiceAreaPage() {

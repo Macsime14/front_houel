@@ -1,27 +1,43 @@
 @import "tailwindcss";
 
 /*
- * Palette validée (cf. CLAUDE.md) : vert-bleu moderne.
- * Site en thème clair uniquement pour l'instant.
+ * Palette validée (cf. CLAUDE.md) : vert-bleu moderne, déclinée en clair et
+ * en sombre via light-dark().
+ *
+ * - color-scheme: light dark  → suit le réglage du système d'exploitation
+ * - [data-theme="light|dark"]  → choix manuel (bouton dans l'en-tête), posé
+ *   sur <html> par un petit script avant le premier rendu (cf. layout.tsx)
  */
 :root {
-  --background: #ffffff;
-  --surface: #f8fafc;
-  --foreground: #0f172a;
-  --muted: #64748b;
-  --border: #e2e8f0;
+  color-scheme: light dark;
 
-  /* Accent « brand » — teal */
-  --brand-50: #f0fdfa;
-  --brand-100: #ccfbf1;
-  --brand-200: #5eead4;
-  --brand-300: #2dd4bf;
-  --brand-400: #14b8a6;
-  --brand-500: #0d9488;
-  --brand-600: #0f766e;
-  --brand-700: #115e59;
-  --brand-800: #134e4a;
-  --brand-900: #042f2e;
+  --background: light-dark(#ffffff, #0b1220);
+  --surface: light-dark(#f8fafc, #101a2b);
+  --foreground: light-dark(#0f172a, #e7eef6);
+  --muted: light-dark(#64748b, #93a4b8);
+  --border: light-dark(#e2e8f0, #263449);
+
+  /* Couleur du texte posé sur un aplat « brand » (boutons) */
+  --on-brand: light-dark(#ffffff, #06201c);
+
+  /* Accent « brand » — teal. En sombre : versions éclaircies pour le contraste. */
+  --brand-50: light-dark(#f0fdfa, #10251f);
+  --brand-100: light-dark(#ccfbf1, #1f463f);
+  --brand-200: light-dark(#5eead4, #245a51);
+  --brand-300: light-dark(#2dd4bf, #2f7d72);
+  --brand-400: light-dark(#14b8a6, #3aa697);
+  --brand-500: light-dark(#0d9488, #2dd4bf);
+  --brand-600: light-dark(#0f766e, #2dd4bf);
+  --brand-700: light-dark(#115e59, #5eead4);
+  --brand-800: light-dark(#134e4a, #99f6e4);
+  --brand-900: light-dark(#042f2e, #ccfbf1);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -30,6 +46,7 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-on-brand: var(--on-brand);
 
   --color-brand-50: var(--brand-50);
   --color-brand-100: var(--brand-100);
@@ -45,6 +62,7 @@
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
 }
 
+html,
 body {
   background: var(--background);
   color: var(--foreground);

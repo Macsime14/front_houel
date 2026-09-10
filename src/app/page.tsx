@@ -23,7 +23,7 @@ export default function HomePage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/contact"
-              className="rounded-md bg-brand-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-700"
+              className="rounded-md bg-brand-600 px-5 py-3 text-sm font-medium text-on-brand transition-colors hover:bg-brand-700"
             >
               Demander un devis
             </Link>
@@ -49,7 +49,7 @@ export default function HomePage() {
                   href={`/services#${service.slug}`}
                   className="group flex h-full flex-col rounded-lg border border-border p-6 transition-[border-color,box-shadow,transform] duration-200 hover:border-brand-500 hover:shadow-sm motion-safe:hover:-translate-y-0.5"
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-brand-100 bg-brand-50 text-brand-600 transition-colors group-hover:border-brand-600 group-hover:bg-brand-600 group-hover:text-white">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-brand-100 bg-brand-50 text-brand-600 transition-colors group-hover:border-brand-600 group-hover:bg-brand-600 group-hover:text-on-brand">
                     <ServiceIcon slug={service.slug} className="h-6 w-6" />
                   </span>
                   <h3 className="mt-4 text-base font-semibold text-foreground">

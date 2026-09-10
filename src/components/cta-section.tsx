@@ -20,7 +20,7 @@ export function CtaSection({
         <p className="mx-auto mt-3 max-w-xl text-muted">{text}</p>
         <Link
           href="/contact"
-          className="mt-6 inline-block rounded-md bg-brand-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-700"
+          className="mt-6 inline-block rounded-md bg-brand-600 px-6 py-3 text-sm font-medium text-on-brand transition-colors hover:bg-brand-700"
         >
           Demander un devis
         </Link>

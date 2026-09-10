@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { CtaSection } from "@/components/cta-section";
+import { ServiceIcon } from "@/components/service-icons";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -49,9 +50,14 @@ export default function ServicesPage() {
                 id={service.slug}
                 className="scroll-mt-24 border-b border-border pb-12 last:border-b-0 last:pb-0"
               >
-                <h2 className="text-xl font-semibold text-foreground">
-                  {service.title}
-                </h2>
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-brand-100 bg-brand-50 text-brand-600">
+                    <ServiceIcon slug={service.slug} className="h-5 w-5" />
+                  </span>
+                  <h2 className="text-xl font-semibold text-foreground">
+                    {service.title}
+                  </h2>
+                </div>
                 <p className="mt-3 max-w-2xl text-muted">{service.intro}</p>
                 <div className="mt-5">
                   <p className="text-sm font-medium text-foreground">

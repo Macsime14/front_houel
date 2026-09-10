@@ -189,13 +189,13 @@ export const site = {
     {
       title: "Évaluation et devis",
       description:
-        "Nous évaluons les travaux, si besoin lors d'une visite, et vous " +
-        "remettons un devis détaillé.",
+        "J'évalue les travaux, si besoin lors d'une visite, et je vous " +
+        "remets un devis détaillé.",
     },
     {
       title: "Planification",
       description:
-        "Une fois le devis validé, nous convenons ensemble d'une date " +
+        "Une fois le devis validé, je conviens avec vous d'une date " +
         "d'intervention.",
     },
     {

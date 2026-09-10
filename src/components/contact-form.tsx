@@ -21,7 +21,7 @@ export function ContactForm() {
   if (state.status === "success") {
     return (
       <div className="rounded-md border border-brand-200 bg-brand-50 p-4 text-sm text-brand-800">
-        Merci, votre demande a bien été envoyée. Nous revenons vers vous
+        Merci, votre demande a bien été envoyée. Je reviens vers vous
         rapidement pour établir un devis.
       </div>
     );

@@ -102,7 +102,7 @@ export default function ServicesPage() {
               href="/contact"
               className="font-medium text-brand-600 hover:text-brand-700"
             >
-              Contactez-nous
+              Contactez-moi
             </Link>
             .
           </p>

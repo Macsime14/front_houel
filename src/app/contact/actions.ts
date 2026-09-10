@@ -37,7 +37,7 @@ export async function submitContactRequest(
     return {
       status: "error",
       errors: {
-        form: "L'envoi a échoué. Réessayez, ou contactez-nous par téléphone.",
+        form: "L'envoi a échoué. Réessayez, ou contactez-moi par téléphone.",
       },
       values,
     };

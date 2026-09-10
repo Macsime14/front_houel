@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Zone d'intervention",
   description: site.serviceArea.regionLabel
     ? `Plombier à ${site.serviceArea.regionLabel} : installation et rénovation sur devis. Vérifiez si votre commune est couverte.`
-    : "Les secteurs desservis pour vos travaux de plomberie. Contactez-nous pour vérifier si votre commune est couverte.",
+    : "Les secteurs desservis pour vos travaux de plomberie. Contactez-moi pour vérifier si votre commune est couverte.",
 };
 
 export default function ServiceAreaPage() {
@@ -23,9 +23,9 @@ export default function ServiceAreaPage() {
 
   const intro = regionLabel
     ? baseCity
-      ? `Basés à ${baseCity}${baseCityPostalCode ? ` (${baseCityPostalCode})` : ""}, nous intervenons sur ${regionLabel} pour vos projets d'installation et de rénovation.`
-      : `Nous intervenons sur ${regionLabel} pour vos projets d'installation et de rénovation.`
-    : "Nous intervenons sur un secteur défini pour vos projets d'installation et de rénovation.";
+      ? `Basé à ${baseCity}${baseCityPostalCode ? ` (${baseCityPostalCode})` : ""}, j'interviens sur ${regionLabel} pour vos projets d'installation et de rénovation.`
+      : `J'interviens sur ${regionLabel} pour vos projets d'installation et de rénovation.`
+    : "J'interviens sur un secteur défini pour vos projets d'installation et de rénovation.";
 
   return (
     <>
@@ -35,7 +35,7 @@ export default function ServiceAreaPage() {
             Zone d&apos;intervention
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-muted">
-            {intro} Pour un devis, nous nous déplaçons sur le lieu du chantier.
+            {intro} Pour un devis, je me déplace sur le lieu du chantier.
           </p>
         </Container>
       </section>
@@ -73,8 +73,8 @@ export default function ServiceAreaPage() {
               <p className="mt-3 text-muted">
                 La liste précise des communes desservies sera bientôt publiée. En
                 attendant, indiquez l&apos;adresse de votre projet dans le
-                formulaire de contact : nous vous confirmons rapidement si nous
-                pouvons intervenir.
+                formulaire de contact : je vous confirme rapidement si je peux
+                intervenir.
               </p>
               <Link
                 href="/contact"

@@ -19,7 +19,7 @@ export default function ContactPage() {
       </h1>
       <p className="mt-4 max-w-2xl text-muted">
         Décrivez votre projet (type de prestation, adresse, délai souhaité) et
-        nous revenons vers vous pour établir un devis.
+        je reviens vers vous pour établir un devis.
       </p>
 
       <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,1fr)_16rem]">
@@ -29,7 +29,7 @@ export default function ContactPage() {
 
         {hasDirectContact ? (
           <aside className="text-sm">
-            <p className="font-semibold text-foreground">Nous joindre directement</p>
+            <p className="font-semibold text-foreground">Me joindre directement</p>
             <dl className="mt-3 space-y-2 text-muted">
               {hasPhone && phoneHref ? (
                 <div>

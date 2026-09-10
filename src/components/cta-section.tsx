@@ -6,7 +6,7 @@ import { Container } from "@/components/container";
  */
 export function CtaSection({
   title = "Un projet de plomberie ?",
-  text = "Décrivez votre besoin, nous revenons vers vous pour établir un devis.",
+  text = "Décrivez votre besoin, je reviens vers vous pour établir un devis.",
 }: {
   title?: string;
   text?: string;

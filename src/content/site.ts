@@ -47,8 +47,11 @@ export const site = {
     name: "Antoine Plomberie",
     trade: "Plombier",
     baseline: "Installation et rénovation sanitaire",
-    /** Ville principale */
+    /** Ville principale visée (marché principal) */
     city: "Caen",
+    /** Commune où l'activité est basée */
+    baseCity: "Noyers-Bocage",
+    baseCityPostalCode: "14210",
     description:
       "Installation et rénovation de salles de bain, chauffe-eau, chaudières " +
       "et réseaux d'eau. Travaux planifiés, réalisés sur devis.",
@@ -69,14 +72,14 @@ export const site = {
    */
   serviceAreas: [
     { city: "Caen", postalCode: "14000", department: "Calvados" },
+    { city: "Noyers-Bocage", postalCode: "14210", department: "Calvados" },
   ] as ServiceArea[],
 
   serviceArea: {
     /**
-     * Libellé du secteur couvert, ex. « la métropole de Lyon » ou
-     * « le nord de l'Isère ». Utilisé dans les phrases de la page.
+     * Libellé du secteur couvert. Utilisé dans les phrases de la page.
      */
-    regionLabel: "Caen",
+    regionLabel: "Caen et ses alentours",
     /** Note libre affichée sur la page Zone d'intervention — optionnelle */
     note: "",
   },

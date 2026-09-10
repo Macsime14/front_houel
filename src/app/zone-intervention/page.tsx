@@ -18,7 +18,14 @@ export const metadata: Metadata = {
 
 export default function ServiceAreaPage() {
   const { regionLabel, note } = site.serviceArea;
+  const { baseCity, baseCityPostalCode } = site.business;
   const groups = hasServiceAreas ? groupServiceAreasByDepartment() : [];
+
+  const intro = regionLabel
+    ? baseCity
+      ? `Basés à ${baseCity}${baseCityPostalCode ? ` (${baseCityPostalCode})` : ""}, nous intervenons sur ${regionLabel} pour vos projets d'installation et de rénovation.`
+      : `Nous intervenons sur ${regionLabel} pour vos projets d'installation et de rénovation.`
+    : "Nous intervenons sur un secteur défini pour vos projets d'installation et de rénovation.";
 
   return (
     <>
@@ -28,10 +35,7 @@ export default function ServiceAreaPage() {
             Zone d&apos;intervention
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-muted">
-            {regionLabel
-              ? `Nous intervenons sur ${regionLabel} pour vos projets d'installation et de rénovation.`
-              : "Nous intervenons sur un secteur défini pour vos projets d'installation et de rénovation."}{" "}
-            Pour un devis, nous nous déplaçons sur le lieu du chantier.
+            {intro} Pour un devis, nous nous déplaçons sur le lieu du chantier.
           </p>
         </Container>
       </section>

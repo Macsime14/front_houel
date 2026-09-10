@@ -26,7 +26,8 @@ export function LocalBusinessJsonLd() {
     areaServed,
     address: {
       "@type": "PostalAddress",
-      addressLocality: site.business.city,
+      addressLocality: site.business.baseCity || site.business.city,
+      postalCode: site.business.baseCityPostalCode || undefined,
       addressCountry: "FR",
     },
   };

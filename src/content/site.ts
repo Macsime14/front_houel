@@ -40,6 +40,15 @@ export type ProcessStep = {
   description: string;
 };
 
+/**
+ * URL publique du site — sert de base aux liens absolus (sitemap, robots.txt,
+ * métadonnées Open Graph). Pas de nom de domaine acheté pour l'instant : à
+ * définir via la variable d'environnement NEXT_PUBLIC_SITE_URL une fois le
+ * domaine choisi (cf. CLAUDE.md, « Points encore ouverts »).
+ */
+export const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const site = {
   business: {
     ownerFirstName: "Antoine",

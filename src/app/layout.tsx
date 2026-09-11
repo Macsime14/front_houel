@@ -4,7 +4,7 @@ import "./globals.css";
 import { InlineScript } from "@/components/inline-script";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { site } from "@/content/site";
+import { areaHeadline, site, siteUrl } from "@/content/site";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -12,8 +12,9 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: `${site.business.name} — ${site.business.baseline}`,
+    default: `${site.business.name} — ${areaHeadline}`,
     template: `%s — ${site.business.name}`,
   },
   description: site.business.description,

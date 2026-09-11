@@ -5,7 +5,12 @@ import { site, siteUrl } from "@/content/site";
  * Les pages légales (mentions légales, politique de confidentialité) sont en
  * noindex (cf. leurs métadonnées) et volontairement absentes d'ici : on
  * n'indexe pas de pages qu'on demande par ailleurs aux moteurs d'ignorer.
+ *
+ * revalidate = 0 : évite qu'une ancienne réponse mise en cache (CDN) ne
+ * survive après un changement de NEXT_PUBLIC_SITE_URL ou de déploiement.
  */
+export const revalidate = 0;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 

@@ -48,8 +48,13 @@ export type ProcessStep = {
  */
 // `||` (et non `??`) : une variable d'environnement définie mais laissée
 // vide côté hébergeur doit aussi retomber sur la valeur par défaut.
+// On retire un éventuel « / » final : le reste du code fait toujours
+// `${siteUrl}${chemin}` avec un chemin qui commence déjà par « / ».
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-export const siteUrl = configuredSiteUrl || "http://localhost:3000";
+export const siteUrl = (configuredSiteUrl || "http://localhost:3000").replace(
+  /\/+$/,
+  "",
+);
 
 export const site = {
   business: {

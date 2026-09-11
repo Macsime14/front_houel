@@ -46,8 +46,10 @@ export type ProcessStep = {
  * définir via la variable d'environnement NEXT_PUBLIC_SITE_URL une fois le
  * domaine choisi (cf. CLAUDE.md, « Points encore ouverts »).
  */
+// `||` (et non `??`) : une variable d'environnement définie mais laissée
+// vide côté hébergeur doit aussi retomber sur la valeur par défaut.
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export const site = {
   business: {

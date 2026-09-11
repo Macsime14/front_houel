@@ -38,8 +38,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <InlineScript html={themeScript} />
       </head>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
+        <a
+          href="#main"
+          className="sr-only rounded-md bg-brand-600 px-4 py-2 text-sm font-medium text-on-brand focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50"
+        >
+          Aller au contenu
+        </a>
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main id="main" className="flex-1">
+          {children}
+        </main>
         <SiteFooter />
       </body>
     </html>

@@ -40,6 +40,23 @@ export type ProcessStep = {
   description: string;
 };
 
+export type ShowcaseProject = {
+  slug: string;
+  title: string;
+  /** Ville ou secteur du chantier, optionnel */
+  location?: string;
+  description: string;
+  images: { src: string; alt: string }[];
+};
+
+/**
+ * Section « Réalisations » : masquée tant qu'Antoine n'a pas de photos de
+ * chantier ni d'avis clients réels. Ne pas l'activer avec du faux contenu —
+ * cf. CLAUDE.md. Piloté ici pour rester la seule source de vérité (nav +
+ * page /realisations en dépendent).
+ */
+const showcaseEnabled = false;
+
 /**
  * URL publique du site — sert de base aux liens absolus (sitemap, robots.txt,
  * métadonnées Open Graph). Pas de nom de domaine acheté pour l'instant : à
@@ -225,6 +242,9 @@ export const site = {
   nav: [
     { href: "/", label: "Accueil" },
     { href: "/services", label: "Services" },
+    ...(showcaseEnabled
+      ? [{ href: "/realisations", label: "Réalisations" }]
+      : []),
     { href: "/zone-intervention", label: "Zone d'intervention" },
     { href: "/contact", label: "Contact" },
   ] as NavLink[],
@@ -236,11 +256,12 @@ export const site = {
   ] as NavLink[],
 
   /**
-   * Section « Réalisations » : masquée tant qu'Antoine n'a pas de photos de
-   * chantier ni d'avis clients réels. Ne pas l'activer avec du faux contenu.
+   * Chantiers à afficher une fois la section activée. Vide tant qu'il n'y a
+   * pas de vraies photos — ne pas remplir avec du contenu inventé.
    */
   showcase: {
-    enabled: false,
+    enabled: showcaseEnabled,
+    projects: [] as ShowcaseProject[],
   },
 
   /**

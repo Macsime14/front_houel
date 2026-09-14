@@ -7,6 +7,7 @@ import {
   hasServiceAreas,
   phoneHref,
   mailHref,
+  dashboardUrl,
 } from "@/content/site";
 
 /**
@@ -85,13 +86,14 @@ export function SiteFooter() {
             </nav>
 
             {/*
-              Raccourci perso (Maxime) vers un dashboard local, hors scope
-              phase 1 — ajouté sciemment à la demande explicite de
+              Raccourci perso (Maxime) vers un dashboard — projet séparé, hors
+              scope phase 1 — ajouté sciemment à la demande explicite de
               l'utilisateur malgré la règle du brief sur les phases 2-4.
-              Ne fonctionne que sur sa machine, serveur local lancé.
+              URL pilotée par NEXT_PUBLIC_DASHBOARD_URL (cf. content/site.ts) :
+              locale par défaut, à remplacer une fois ce projet déployé.
             */}
             <a
-              href="http://localhost:3001/dashboard/"
+              href={dashboardUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Tableau de bord (local)"

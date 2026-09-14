@@ -73,6 +73,17 @@ export const siteUrl = (configuredSiteUrl || "http://localhost:3000").replace(
   "",
 );
 
+/**
+ * Lien perso (Maxime) vers un dashboard — projet séparé, hors scope phase 1
+ * (cf. discussion). Pointe vers l'instance locale par défaut ; à remplacer
+ * par NEXT_PUBLIC_DASHBOARD_URL sur Vercel une fois ce projet déployé —
+ * aucun changement de code nécessaire, juste la variable (en type Config,
+ * pas Secret : cf. mésaventure avec NEXT_PUBLIC_SITE_URL).
+ */
+export const dashboardUrl = (
+  process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001/dashboard/"
+).trim();
+
 export const site = {
   business: {
     ownerFirstName: "Antoine",

@@ -78,3 +78,36 @@ body {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/*
+ * Dérive lente des halos décoratifs du hero (cf. HeroMotif / page d'accueil).
+ * Purement esthétique : désactivée si l'utilisateur préfère moins de mouvement.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-blob-a {
+    animation: hero-drift-a 16s ease-in-out infinite;
+  }
+  .hero-blob-b {
+    animation: hero-drift-b 20s ease-in-out infinite;
+  }
+}
+
+@keyframes hero-drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-18px, 14px);
+  }
+}
+
+@keyframes hero-drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(16px, -16px);
+  }
+}
